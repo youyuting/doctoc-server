@@ -1,25 +1,31 @@
 package north.sample.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by yyou on 2016/11/14.
  */
+@Entity
 public class Patient {
     @Id
     private Long id;
-    @Column(length = 64, nullable = false, unique = true)
-    private String nom;//last name
     @Column(length = 64, nullable = false)
-    private String prenom;//first name
+    private String lastName;
+    @Column(length = 64, nullable = false)
+    private String firstName;
     @Column(nullable = false)
     private char sex;
-    @Column(length = 10, nullable = false)
+    @Column(nullable = false)
     private long telephone;
     @Column(length = 64, nullable = false)
     private String email;
 
+    @OneToMany(mappedBy = "patient")
+    private List<Antecedent> antecedents;
+
+    @OneToMany(mappedBy = "patient")
+    private List<Consultation> consultations;
 
     public Long getId() {
         return id;
@@ -29,20 +35,18 @@ public class Patient {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public char getSex() {
@@ -67,5 +71,21 @@ public class Patient {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Antecedent> getAntecedents() {
+        return antecedents;
+    }
+
+    public void setAntecedents(List<Antecedent> antecedents) {
+        this.antecedents = antecedents;
+    }
+
+    public List<Consultation> getConsultations() {
+        return consultations;
+    }
+
+    public void setConsultations(List<Consultation> consultations) {
+        this.consultations = consultations;
     }
 }

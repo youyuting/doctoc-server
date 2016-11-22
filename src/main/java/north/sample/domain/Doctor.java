@@ -1,12 +1,13 @@
 package north.sample.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by yyou on 2016/11/10.
  */
+
+@Entity
 public class Doctor {
 
     @Id
@@ -19,7 +20,7 @@ public class Doctor {
     private char sex;
     @Column(length = 64, nullable = false)
     private String fac;
-    @Column(length = 14, nullable = false)
+    @Column(nullable = false)
     private Long telephone;
     @Column(length = 64, nullable = false)
     private String email;
@@ -28,6 +29,10 @@ public class Doctor {
     @Column(name="pic")
     @Lob
     private byte[] picture;
+
+    @OneToMany(mappedBy = "doctor")
+    private List<Consultation> consultations;
+
 
     public Long getId() {
         return id;
@@ -69,7 +74,7 @@ public class Doctor {
         this.fac = fac;
     }
 
-    public double getTelephone() {
+    public Long getTelephone() {
         return telephone;
     }
 
@@ -99,5 +104,13 @@ public class Doctor {
 
     public void setPicture(byte[] picture) {
         this.picture = picture;
+    }
+
+    public List<Consultation> getConsultations() {
+        return consultations;
+    }
+
+    public void setConsultations(List<Consultation> consultations) {
+        this.consultations = consultations;
     }
 }

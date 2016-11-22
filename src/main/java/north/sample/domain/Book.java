@@ -3,7 +3,6 @@ package north.sample.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 
 @Entity
 public class Book {
@@ -13,6 +12,8 @@ public class Book {
     private String title;
     @Column(length = 64, nullable = false)
     private String author;
+
+
 
     public long getId() {
         return id;
