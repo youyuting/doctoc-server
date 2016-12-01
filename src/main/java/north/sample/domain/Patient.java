@@ -27,26 +27,20 @@ public class Patient {
 //when you register you already login , and logout
     @OneToMany(mappedBy = "patient")
     private List<Antecedent> antecedents;
-
     @OneToMany(mappedBy = "patient")
     private List<Consultation> consultations;
-
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
-
     public String getLastName() {
         return lastName;
     }
