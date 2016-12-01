@@ -12,10 +12,12 @@ public class Doctor {
 
     @Id
     private Long id;
-    @Column(length = 64, nullable = false, unique = true)
-    private String nom;//last name
+    @Column(nullable = false)
+    private String password;
+    @Column(nullable = false)
+    private String lastName;
     @Column(length = 64, nullable = false)
-    private String prenom;//first name
+    private String firstName;
     @Column( nullable = false)
     private char sex;
     @Column(length = 64, nullable = false)
@@ -33,7 +35,6 @@ public class Doctor {
     @OneToMany(mappedBy = "doctor")
     private List<Consultation> consultations;
 
-
     public Long getId() {
         return id;
     }
@@ -42,20 +43,28 @@ public class Doctor {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getPassword() {
+        return password;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public char getSex() {

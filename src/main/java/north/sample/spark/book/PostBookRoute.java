@@ -30,5 +30,4 @@ public class PostBookRoute extends JsonTransformer {
         response.status(201); // 201 Created
         return book;
     }
-    
 }

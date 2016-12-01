@@ -10,9 +10,11 @@ import java.util.List;
 public class Patient {
     @Id
     private Long id;
-    @Column(length = 64, nullable = false)
+    @Column(nullable = false)
+    private String password;
+    @Column(nullable = false)
     private String lastName;
-    @Column(length = 64, nullable = false)
+    @Column(nullable = false)
     private String firstName;
     @Column(nullable = false)
     private char sex;
@@ -20,7 +22,9 @@ public class Patient {
     private long telephone;
     @Column(length = 64, nullable = false)
     private String email;
-
+    @Column(length = 64, nullable = false)
+    private String address;
+//when you register you already login , and logout
     @OneToMany(mappedBy = "patient")
     private List<Antecedent> antecedents;
 
@@ -33,6 +37,14 @@ public class Patient {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getLastName() {
@@ -87,5 +99,13 @@ public class Patient {
 
     public void setConsultations(List<Consultation> consultations) {
         this.consultations = consultations;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
