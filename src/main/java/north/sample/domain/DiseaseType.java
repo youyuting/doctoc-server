@@ -13,7 +13,7 @@ public class DiseaseType {
     private long id;
     @Column(nullable = false)
     private String name;
-    @Column(length = 256)
+    @Column (length = 256)
     private String description;
     @OneToMany(mappedBy = "diseaseType")
     private List<Antecedent> antecedents;

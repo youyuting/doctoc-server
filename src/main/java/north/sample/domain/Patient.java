@@ -20,15 +20,32 @@ public class Patient {
     private char sex;
     @Column(nullable = false)
     private long telephone;
-    @Column(length = 64, nullable = false)
+    @Column( nullable = false)
     private String email;
-    @Column(length = 64, nullable = false)
+    @Column( nullable = false)
     private String address;
 //when you register you already login , and logout
     @OneToMany(mappedBy = "patient")
     private List<Antecedent> antecedents;
     @OneToMany(mappedBy = "patient")
     private List<Consultation> consultations;
+
+    public Patient() {
+    }
+
+    public Patient(Long id, String password, String lastName, String firstName, char sex, long telephone, String email, String address, List<Antecedent> antecedents, List<Consultation> consultations) {
+        this.id = id;
+        this.password = password;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.sex = sex;
+        this.telephone = telephone;
+        this.email = email;
+        this.address = address;
+        this.antecedents = antecedents;
+        this.consultations = consultations;
+    }
+
     public Long getId() {
         return id;
     }

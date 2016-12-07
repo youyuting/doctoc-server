@@ -1,5 +1,7 @@
 package north.sample.domain;
 
+import org.postgis.Point;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,6 +20,11 @@ public class Doctor {
     private String lastName;
     @Column(length = 64, nullable = false)
     private String firstName;
+    @Column(nullable = false)
+    private String address;
+
+    private Point currentLocation;
+
     @Column( nullable = false)
     private char sex;
     @Column(length = 64, nullable = false)
@@ -27,6 +34,7 @@ public class Doctor {
     @Column(length = 64, nullable = false)
     private String email;
     @Column(length = 64, nullable = false)
+
     private String photo;
     @Column(name="pic")
     @Lob
@@ -34,6 +42,25 @@ public class Doctor {
 
     @OneToMany(mappedBy = "doctor")
     private List<Consultation> consultations;
+
+    public Doctor() {
+    }
+
+    public Doctor(Long id, String password, String lastName, String firstName, String address, Point currentLocation, char sex, String fac, Long telephone, String email, String photo, byte[] picture, List<Consultation> consultations) {
+        this.id = id;
+        this.password = password;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.address = address;
+        this.currentLocation = currentLocation;
+        this.sex = sex;
+        this.fac = fac;
+        this.telephone = telephone;
+        this.email = email;
+        this.photo = photo;
+        this.picture = picture;
+        this.consultations = consultations;
+    }
 
     public Long getId() {
         return id;
@@ -65,6 +92,10 @@ public class Doctor {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
+    public String getAddress() { return address; }
+
+    public void setAddress(String address) { this.address = address; }
 
     public char getSex() {
         return sex;
@@ -120,5 +151,11 @@ public class Doctor {
 
     public void setConsultations(List<Consultation> consultations) {
         this.consultations = consultations;
+    }
+
+    public Point getCurrentLocation() { return currentLocation;}
+
+    public void setCurrentLocation(Point currentLocation) {
+        this.currentLocation = currentLocation;
     }
 }
