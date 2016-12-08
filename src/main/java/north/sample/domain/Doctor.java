@@ -11,35 +11,31 @@ import java.util.List;
 
 @Entity
 public class Doctor {
-
     @Id
     private Long id;
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
     private String lastName;
-    @Column(length = 64, nullable = false)
+    @Column(nullable = false)
     private String firstName;
     @Column(nullable = false)
     private String address;
-
+    @Column
     private Point currentLocation;
-
     @Column( nullable = false)
     private char sex;
-    @Column(length = 64, nullable = false)
-    private String fac;
     @Column(nullable = false)
+    private String fac;
+    @Column(nullable = false,unique = true)
     private Long telephone;
-    @Column(length = 64, nullable = false)
+    @Column( nullable = false,unique = true)
     private String email;
-    @Column(length = 64, nullable = false)
-
+    @Column( nullable = false)
     private String photo;
     @Column(name="pic")
     @Lob
     private byte[] picture;
-
     @OneToMany(mappedBy = "doctor")
     private List<Consultation> consultations;
 
@@ -69,6 +65,7 @@ public class Doctor {
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getPassword() {
         return password;
     }

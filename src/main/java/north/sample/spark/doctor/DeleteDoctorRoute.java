@@ -27,5 +27,4 @@ public class DeleteDoctorRoute  extends JsonTransformer {
             return createErrorResponse("Not found");
         }
     }
-
 }

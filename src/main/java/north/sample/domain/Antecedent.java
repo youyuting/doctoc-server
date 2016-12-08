@@ -25,6 +25,8 @@ public class Antecedent {
     @Column(columnDefinition = "text",nullable = false, unique = true)
     private String detail;
 
+
+
     public Date getDate() {
         return date;
     }

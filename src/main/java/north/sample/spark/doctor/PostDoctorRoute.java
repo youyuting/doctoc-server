@@ -1,5 +1,4 @@
 package north.sample.spark.doctor;
-
 import com.avaje.ebean.Ebean;
 import north.sample.domain.Book;
 import north.sample.domain.Doctor;
@@ -7,7 +6,6 @@ import north.sample.spark.JsonTransformer;
 import spark.Request;
 import spark.Response;
 import spark.utils.IOUtils;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.Part;
 import java.io.IOException;
@@ -26,10 +24,25 @@ public class PostDoctorRoute extends JsonTransformer {
         Doctor doctor = null;
         try {
             doctor = new Doctor();
-
             if(request.params("password") != null ) {
-                //todo
-                doctor.setPassword(request.params("password"));
+                if(request.params("lastName")!= null){
+                    if(request.params("firstName")!= null){
+                        //todo
+                        doctor.setFirstName(request.params("firstName"));
+                        doctor.setLastName(request.params("lastName"));
+                        doctor.setPassword(request.params("password"));
+                        doctor.setAddress(request.params("address"));
+                        doctor.setEmail(request.params("email"));
+                        doctor.setFac(request.params("fac"));
+                        doctor.setTelephone(Long.valueOf(request.params("telephone")));
+                    }else {
+                        response.status(400);
+                        return "FirstName is mandatory !!";
+                    }
+                }else {
+                    response.status(400);
+                    return "LastName is mandatory !!";
+                }
             } else {
                 response.status(400);
                 return "Password is mandatory !!";
@@ -57,6 +70,4 @@ public class PostDoctorRoute extends JsonTransformer {
         response.status(201); // 201 Created
         return doctor;
     }
-
-
 }

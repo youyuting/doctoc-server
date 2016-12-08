@@ -10,23 +10,32 @@ import java.util.List;
 public class Patient {
     @Id
     private Long id;
+
     @Column(nullable = false)
     private String password;
+
     @Column(nullable = false)
     private String lastName;
+
     @Column(nullable = false)
     private String firstName;
+
     @Column(nullable = false)
     private char sex;
-    @Column(nullable = false)
+
+    @Column(nullable = false,unique = true)
     private long telephone;
-    @Column( nullable = false)
+
+    @Column( nullable = false,unique = true)
     private String email;
+
     @Column( nullable = false)
     private String address;
 //when you register you already login , and logout
+
     @OneToMany(mappedBy = "patient")
     private List<Antecedent> antecedents;
+
     @OneToMany(mappedBy = "patient")
     private List<Consultation> consultations;
 
@@ -49,21 +58,27 @@ public class Patient {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
+
     public String getLastName() {
         return lastName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
     public String getFirstName() {
         return firstName;
     }
@@ -96,6 +111,14 @@ public class Patient {
         this.email = email;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public List<Antecedent> getAntecedents() {
         return antecedents;
     }
@@ -110,13 +133,5 @@ public class Patient {
 
     public void setConsultations(List<Consultation> consultations) {
         this.consultations = consultations;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 }
