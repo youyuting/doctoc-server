@@ -1,29 +1,23 @@
 package north.sample.spark.doctor;
 
 import com.avaje.ebean.Ebean;
-import north.sample.domain.Book;
 import north.sample.domain.Doctor;
 import north.sample.spark.JsonTransformer;
 import spark.Request;
 import spark.Response;
 
 /**
- * Created by yyou on 2016/11/14.
+ * Created by yyou on 2016/12/8.
  */
-public class GetDoctorsRoute extends JsonTransformer{
+public class GetDoctorsRoute extends JsonTransformer {
+
     public GetDoctorsRoute(String path) {
         super(path);
     }
 
     @Override
     public Object handle(Request request, Response response) {
-        long doctorId = Long.parseLong(request.params(":id"));
-        Doctor doctor = Ebean.find(Doctor.class, doctorId);
-        if (doctor != null) {
-            return doctor;
-        } else {
-            response.status(404); // 404 Not found
-            return createErrorResponse("Not found");
-        }
+        return Ebean.find(Doctor.class).findList();
     }
+
 }

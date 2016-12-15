@@ -1,8 +1,5 @@
 package north.sample.domain;
-
-import org.postgresql.geometric.PGpoint;
-import org.postgresql.util.PGmoney;
-
+import org.postgis.Point;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -21,11 +18,11 @@ public class Consultation {
     @ManyToOne
     Doctor doctor;
     @Column(name = "consultation_date", nullable = false)
-    private Date date;//???
+    private Date date;
     @Column( nullable = false)
-    private PGpoint place;
+    private Point place;
     @Column( nullable = false)
-    private PGmoney price;
+    private double price;
     @Column(columnDefinition = "text", nullable = false)
     private String prescription;
 
@@ -33,7 +30,7 @@ public class Consultation {
     private String diagnostic;
 
     @OneToMany(mappedBy = "consultation")
-    private List<Constant> constant;
+    private List<Condition> constant;
     public long getId() {
         return id;
     }
@@ -58,16 +55,16 @@ public class Consultation {
     public void setDate(Date date) {
         this.date = date;
     }
-    public PGpoint getPlace() {
+    public Point getPlace() {
         return place;
     }
-    public void setPlace(PGpoint place) {
+    public void setPlace(Point place) {
         this.place = place;
     }
-    public PGmoney getPrice() {
+    public double getPrice() {
         return price;
     }
-    public void setPrice(PGmoney price) {
+    public void setPrice(double price) {
         this.price = price;
     }
     public String getPrescription() {
@@ -86,11 +83,11 @@ public class Consultation {
         this.diagnostic = diagnostic;
     }
 
-    public List<Constant> getConstant() {
+    public List<Condition> getConstant() {
         return constant;
     }
 
-    public void setConstant(List<Constant> constant) {
+    public void setConstant(List<Condition> constant) {
         this.constant = constant;
     }
 }

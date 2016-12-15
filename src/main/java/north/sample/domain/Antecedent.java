@@ -19,6 +19,7 @@ public class Antecedent {
     @ManyToOne
     DiseaseType diseaseType;
 
+    /* */
     @Column(name = "antecedent_date",nullable = false)
     private Date date;
 

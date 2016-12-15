@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
  */
 
 @Entity
-public class Constant {
+public class Condition {
 
     @Id
     private long id;
