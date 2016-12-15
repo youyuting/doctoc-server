@@ -150,4 +150,9 @@ public class Patient {
     public void setConsultations(List<Consultation> consultations) {
         this.consultations = consultations;
     }
+
+    public static Patient findByEmail(String email) {
+        return Ebean.find(Patient.class).where(Expr.eq("email", email)).findUnique();
+    }
+
 }
