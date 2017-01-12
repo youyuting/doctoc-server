@@ -1,5 +1,5 @@
 package north.sample.domain;
-import org.postgis.Point;
+//import org.postgis.Point;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -19,8 +19,8 @@ public class Consultation {
     Doctor doctor;
     @Column(name = "consultation_date", nullable = false)
     private Date date;
-    @Column( nullable = false)
-    private Point place;
+    /*@Column( nullable = false)
+    private Point place;*/
     @Column( nullable = false)
     private double price;
     @Column(columnDefinition = "text", nullable = false)
@@ -55,12 +55,12 @@ public class Consultation {
     public void setDate(Date date) {
         this.date = date;
     }
-    public Point getPlace() {
+    /*public Point getPlace() {
         return place;
     }
     public void setPlace(Point place) {
         this.place = place;
-    }
+    }*/
     public double getPrice() {
         return price;
     }

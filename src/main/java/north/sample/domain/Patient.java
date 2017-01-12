@@ -2,7 +2,7 @@ package north.sample.domain;
 
 import com.avaje.ebean.Ebean;
 import com.avaje.ebean.Expr;
-import org.postgis.Point;
+
 
 import javax.persistence.*;
 import java.util.List;
@@ -37,8 +37,8 @@ public class Patient {
     private String address;
 //when you register you already login , and logout
 
-    @Column
-    private Point currentLocation;
+//    @Column
+//    private Point currentLocation;
 
     @OneToMany(mappedBy = "patient")
     private List<Antecedent> antecedents;
@@ -49,7 +49,7 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(Long id, String password, String lastName, String firstName, char sex, long telephone, String email, String address, Point currentLocation, List<Antecedent> antecedents, List<Consultation> consultations) {
+    public Patient(Long id, String password, String lastName, String firstName, char sex, long telephone, String email, String address, List<Antecedent> antecedents, List<Consultation> consultations) {
         this.id = id;
         this.password = password;
         this.lastName = lastName;
@@ -58,7 +58,7 @@ public class Patient {
         this.telephone = telephone;
         this.email = email;
         this.address = address;
-        this.currentLocation = currentLocation;
+//        this.currentLocation = currentLocation;
         this.antecedents = antecedents;
         this.consultations = consultations;
     }
@@ -127,13 +127,13 @@ public class Patient {
         this.address = address;
     }
 
-    public Point getCurrentLocation() {
-        return currentLocation;
-    }
-
-    public void setCurrentLocation(Point currentLocation) {
-        this.currentLocation = currentLocation;
-    }
+//    public Point getCurrentLocation() {
+//        return currentLocation;
+//    }
+//
+//    public void setCurrentLocation(Point currentLocation) {
+//        this.currentLocation = currentLocation;
+//    }
 
     public List<Antecedent> getAntecedents() {
         return antecedents;

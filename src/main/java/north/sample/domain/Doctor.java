@@ -1,6 +1,6 @@
 package north.sample.domain;
 
-import org.postgis.Point;
+//import org.postgis.Point;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,8 +21,8 @@ public class Doctor {
     private String firstName;
     @Column(nullable = false)
     private String address;
-    @Column
-    private Point currentLocation;
+
+    //private Point currentLocation;
     @Column( nullable = false)
     private char sex;
     @Column(nullable = false)
@@ -42,13 +42,13 @@ public class Doctor {
     public Doctor() {
     }
 
-    public Doctor(Long id, String password, String lastName, String firstName, String address, Point currentLocation, char sex, String fac, Long telephone, String email, String photo, byte[] picture, List<Consultation> consultations) {
+    public Doctor(Long id, String password, String lastName, String firstName, String address, /*Point currentLocation,*/ char sex, String fac, Long telephone, String email, String photo, byte[] picture, List<Consultation> consultations) {
         this.id = id;
         this.password = password;
         this.lastName = lastName;
         this.firstName = firstName;
         this.address = address;
-        this.currentLocation = currentLocation;
+//        this.currentLocation = currentLocation;
         this.sex = sex;
         this.fac = fac;
         this.telephone = telephone;
@@ -150,9 +150,9 @@ public class Doctor {
         this.consultations = consultations;
     }
 
-    public Point getCurrentLocation() { return currentLocation;}
+   /* public Point getCurrentLocation() { return currentLocation;}
 
     public void setCurrentLocation(Point currentLocation) {
         this.currentLocation = currentLocation;
-    }
+    }*/
 }
