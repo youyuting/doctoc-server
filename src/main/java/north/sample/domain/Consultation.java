@@ -1,6 +1,7 @@
 package north.sample.domain;
 //import org.postgis.Point;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -23,14 +24,18 @@ public class Consultation {
     private Point place;*/
     @Column( nullable = false)
     private double price;
-    @Column(columnDefinition = "text", nullable = false)
-    private String prescription;
 
     @Column( nullable = false)
     private String diagnostic;
+    //诊断 results
+
+    @Column(columnDefinition = "text", nullable = false)
+    private String prescription;
+    //medicament recommendees 处方
+
 
     @OneToMany(mappedBy = "consultation")
-    private List<Condition> constant;
+    private List<Condition> condition;
     public long getId() {
         return id;
     }
@@ -83,12 +88,21 @@ public class Consultation {
         this.diagnostic = diagnostic;
     }
 
-    public List<Condition> getConstant() {
-        return constant;
+    public List<Condition> getCondition() {
+        return condition;
     }
 
-    public void setConstant(List<Condition> constant) {
-        this.constant = constant;
+    public void setCondition(List<Condition> condition) {
+        this.condition = condition;
+    }
+
+
+    public long getDoctorId(long id){
+        return doctor.getId();
+    }
+
+    public long getPatientId(long id){
+        return patient.getId();
     }
 }
 

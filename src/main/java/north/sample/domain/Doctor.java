@@ -2,6 +2,8 @@ package north.sample.domain;
 
 //import org.postgis.Point;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -21,22 +23,23 @@ public class Doctor {
     private String firstName;
     @Column(nullable = false)
     private String address;
-
+    //@Column
     //private Point currentLocation;
     @Column( nullable = false)
     private char sex;
-    @Column(nullable = false)
+    @Column
     private String fac;
     @Column(nullable = false,unique = true)
     private Long telephone;
     @Column( nullable = false,unique = true)
     private String email;
-    @Column( nullable = false)
+    @Column
     private String photo;
     @Column(name="pic")
     @Lob
     private byte[] picture;
     @OneToMany(mappedBy = "doctor")
+    @JsonIgnore
     private List<Consultation> consultations;
 
     public Doctor() {

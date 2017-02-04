@@ -4,8 +4,12 @@ import north.sample.spark.book.GetBooksRoute;
 import north.sample.spark.book.GetBookRoute;
 import north.sample.spark.book.PutBookRoute;
 import north.sample.spark.book.PostBookRoute;
+import north.sample.spark.consultation.GetDoctorConsultationsRoute;
+import north.sample.spark.consultation.GetPatientConsultationsRoute;
+import north.sample.spark.consultation.PostConsultationRoute;
 import north.sample.spark.doctor.GetDoctorRoute;
 import north.sample.spark.doctor.GetDoctorsRoute;
+import north.sample.spark.doctor.PostDoctorRoute;
 import north.sample.spark.patient.*;
 import spark.*;
 
@@ -19,9 +23,9 @@ public class Bootstrap {
             public void handle(Request request, Response response) {
                 String url = request.url();
 
-                if (!url.contains("/patients/login") &&!url.contains("/patients/signIn") && request.session().attribute("user") == null) {
-                    halt(401, "Unauthorized !!!");
-                }
+//                if (!url.contains("/patients/login") &&!url.contains("/patients/signIn") && request.session().attribute("user") == null) {
+//                    halt(401, "Unauthorized !!!");
+//                }
             }
         });
 
@@ -39,6 +43,12 @@ public class Bootstrap {
 
         Spark.get(new GetDoctorRoute("/doctors/:id"));
         Spark.get(new GetDoctorsRoute("/doctors"));
+        Spark.post(new PostDoctorRoute("/doctors/signIn"));
+
+
+        Spark.get(new GetDoctorConsultationsRoute("/doctors/:id/consultations"));
+        Spark.get(new GetPatientConsultationsRoute("/patients/:id/consultations"));
+        Spark.post(new PostConsultationRoute("/createConsultations"));
 
         Spark.get(new Route("/count") {
             @Override

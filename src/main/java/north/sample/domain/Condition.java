@@ -17,7 +17,7 @@ public class Condition {
     @Column(length = 64, nullable = false)
     private String type;
     @Column(nullable = false)
-    private int value;//???
+    private int value;
     @ManyToOne
     private Consultation consultation;
 

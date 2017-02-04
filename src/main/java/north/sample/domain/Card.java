@@ -1,5 +1,7 @@
 package north.sample.domain;
 
+
+// not used
 import javax.persistence.Column;
 import javax.persistence.Id;
 

@@ -2,6 +2,7 @@ package north.sample.spark.doctor;
 import com.avaje.ebean.Ebean;
 import north.sample.domain.Book;
 import north.sample.domain.Doctor;
+import north.sample.domain.Patient;
 import north.sample.spark.JsonTransformer;
 import spark.Request;
 import spark.Response;
@@ -22,33 +23,40 @@ public class PostDoctorRoute extends JsonTransformer {
     @Override
     public Object handle(Request request, Response response) {
         Doctor doctor = null;
+        System.out.println("Creating account ...");
+        System.out.println(request.body());
+        //System.out.println(request.params("password"));
         try {
-            doctor = new Doctor();
-            if(request.params("password") != null ) {
-                if(request.params("lastName")!= null){
-                    if(request.params("firstName")!= null){
-                        //todo
-                        doctor.setFirstName(request.params("firstName"));
-                        doctor.setLastName(request.params("lastName"));
-                        doctor.setPassword(request.params("password"));
-                        doctor.setAddress(request.params("address"));
-                        doctor.setEmail(request.params("email"));
-                        doctor.setFac(request.params("fac"));
-                        doctor.setTelephone(Long.valueOf(request.params("telephone")));
-                    }else {
+            doctor = mapper.readValue(request.body(), Doctor.class);
+            System.out.println("password");
+            System.out.println(doctor.getPassword());
+            if(doctor.getPassword()!= null )
+            {
+                if(doctor.getLastName()!= null)
+                {
+                    if(doctor.getFirstName()!= null)
+                    {
+
+                    }
+                    else
+                    {
                         response.status(400);
                         return "FirstName is mandatory !!";
                     }
-                }else {
+                }
+                else
+                {
                     response.status(400);
                     return "LastName is mandatory !!";
                 }
-            } else {
+            }
+            else
+            {
                 response.status(400);
                 return "Password is mandatory !!";
             }
 
-            try {
+/*            try {
                 Part uploaded_file = request.raw().getPart("uploaded_file");
                 if (uploaded_file != null) {
                     try (InputStream is = request.raw().getPart("uploaded_file").getInputStream()) {
@@ -57,13 +65,13 @@ public class PostDoctorRoute extends JsonTransformer {
                         doctor.setPicture(byteArray);
                     }
                 }
-            } catch (ServletException e) {
-                e.printStackTrace();
             }
+            catch (ServletException e) {
+                e.printStackTrace();
+            }*/
         } catch (IOException e) {
 
             response.status(500); // Server-side error
-
             return createErrorResponse("Doctor couldn't be saved");
         }
         Ebean.save(doctor);

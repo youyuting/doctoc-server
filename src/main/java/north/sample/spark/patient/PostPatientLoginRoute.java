@@ -6,6 +6,8 @@ import north.sample.spark.JsonTransformer;
 import spark.Request;
 import spark.Response;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -24,15 +26,15 @@ public class PostPatientLoginRoute extends JsonTransformer {
             Patient patient = Patient.findByEmail(request.queryParams("email"));
             if (patient != null) {
                 try {
-                    byte[] encodedPassword = MessageDigest.getInstance("SHA-256").digest(request.queryParams("password").getBytes());
-                    if (patient.getPassword().equals(new String(encodedPassword))) {
+                    byte[] encodedPassword = MessageDigest.getInstance("SHA-256").digest(request.queryParams("password").getBytes("UTF-8"));
+                    if (patient.getPassword().equals(new String(encodedPassword, Charset.forName("UTF-8")))) {
                         request.session().attribute("user", patient);
                         return patient;
                     } else {
                         response.status(401);
                         return createErrorResponse("Password not right");
                     }
-                } catch (NoSuchAlgorithmException e) {
+                } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
                     response.status(500); // 500 internal error
                     return createErrorResponse(e.getMessage());
                 }

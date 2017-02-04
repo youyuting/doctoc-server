@@ -2,6 +2,7 @@ package north.sample.domain;
 
 import com.avaje.ebean.Ebean;
 import com.avaje.ebean.Expr;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 
 import javax.persistence.*;
@@ -41,9 +42,11 @@ public class Patient {
 //    private Point currentLocation;
 
     @OneToMany(mappedBy = "patient")
+    @JsonIgnore
     private List<Antecedent> antecedents;
 
-    @OneToMany(mappedBy = "patient")
+    @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Consultation> consultations;
 
     public Patient() {

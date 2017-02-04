@@ -16,24 +16,22 @@ public class Antecedent {
     private Long id;
     @ManyToOne
     Patient patient;
-    @ManyToOne
-    DiseaseType diseaseType;
-
-    /* */
+    @Column
+    private String antecedentType;
     @Column(name = "antecedent_date",nullable = false)
     private Date date;
-
     @Column(columnDefinition = "text",nullable = false, unique = true)
-    private String detail;
+    private String description;
 
-
-
-    public Date getDate() {
-        return date;
+    public Antecedent() {
     }
 
-    public void setDate(Date date) {
+    public Antecedent(Long id, Patient patient, String antecedentType, Date date, String description) {
+        this.id = id;
+        this.patient = patient;
+        this.antecedentType = antecedentType;
         this.date = date;
+        this.description = description;
     }
 
     public Long getId() {
@@ -44,14 +42,6 @@ public class Antecedent {
         this.id = id;
     }
 
-    public String  getDetail() {
-        return detail;
-    }
-
-    public void setDetail(String detail) {
-        this.detail = detail;
-    }
-
     public Patient getPatient() {
         return patient;
     }
@@ -60,11 +50,27 @@ public class Antecedent {
         this.patient = patient;
     }
 
-    public DiseaseType getDiseaseType() {
-        return diseaseType;
+    public String getAntecedentType() {
+        return antecedentType;
     }
 
-    public void setDiseaseType(DiseaseType diseaseType) {
-        this.diseaseType = diseaseType;
+    public void setAntecedentType(String antecedentType) {
+        this.antecedentType = antecedentType;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
